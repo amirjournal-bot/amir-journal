@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>امیر ژورنال</title>
+<style>
+:root{--bg:#0f1521;--c:#182033;--c2:#1f2a42;--t:#e8edf7;--m:#8b97b3;--a:#2dd4bf;--g:#22c55e;--r:#ef4444;--y:#f59e0b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font:14px/1.6 "Segoe UI",Tahoma,sans-serif}
+header{display:flex;align-items:center;gap:16px;padding:12px 20px;background:var(--c);border-bottom:1px solid #2a3552}
+h1{margin:0;font-size:20px;color:var(--a)}h2{margin:0 0 10px;font-size:15px}.dt{margin-inline-start:auto;text-align:center;font-weight:600}.dt small{display:block;color:var(--m);font-weight:400;font-size:12px}
+nav{display:flex;gap:4px;padding:8px 20px;background:var(--c)}nav button{background:none;border:0;color:var(--m);padding:8px 16px;border-radius:8px;font:inherit;cursor:pointer}nav .on{background:var(--c2);color:var(--a);font-weight:700}
+main{max-width:900px;margin:16px auto;padding:0 16px}.card{background:var(--c);border-radius:12px;padding:16px;margin-bottom:14px;border:1px solid #2a3552}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid #34436a;background:var(--c2);color:var(--t);padding:7px 14px}button:hover{border-color:var(--a)}
+.pr{background:var(--a);color:#06231f;border:0;font-weight:700;width:100%;padding:12px;font-size:15px}.pr:disabled{opacity:.35;cursor:not-allowed}
+input,select{background:var(--bg);border:1px solid #34436a;color:var(--t);border-radius:8px;padding:8px 10px;font:inherit;width:100%}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:8px}
+.ck{display:flex;align-items:center;gap:10px;padding:9px 12px;margin-bottom:6px;background:var(--c2);border-radius:8px;cursor:pointer;border:1px solid transparent}
+.ck input{width:20px;height:20px;accent-color:var(--a)}.ck span{flex:1}.ck b{color:var(--m)}.ck:has(input:checked){border-color:var(--a)}
+.bar{position:relative;height:12px;background:var(--bg);border-radius:6px;margin:12px 0 8px}.bar i{display:block;height:100%;border-radius:6px;background:var(--y);transition:.2s}.bar i.ok{background:var(--g)}.bar u{position:absolute;top:-4px;height:20px;width:3px;background:var(--t)}
+.st{padding:10px;border-radius:8px;text-align:center;font-weight:700}.st.ok{background:#12351f;color:var(--g)}.st.no{background:#3a1717;color:var(--r)}.ov{display:flex;gap:8px;margin-top:8px;color:var(--y);align-items:center}.ov input{width:auto}
+.slot{border:2px dashed #34436a;border-radius:10px;min-height:90px;display:flex;align-items:center;justify-content:center;color:var(--m);text-align:center;cursor:pointer;margin:8px 0;overflow:hidden;padding:6px}.slot img{max-width:100%;max-height:220px;border-radius:6px}
+.tr{border-inline-start:4px solid #34436a}.tr.w{border-color:var(--g)}.tr.l{border-color:var(--r)}.tr.open{border-color:var(--y)}
+.h{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.h strong{margin-inline-start:auto;font-size:16px}.mu,.h span{color:var(--m)}.pos{color:var(--g)}.neg{color:var(--r)}
+.im{display:flex;gap:8px;margin:8px 0}.im img{height:110px;border-radius:6px;cursor:zoom-in;max-width:48%;object-fit:cover}.im img:not([src]){display:none}
+.chip{display:inline-block;padding:3px 10px;margin:3px;border-radius:14px;background:var(--c2);cursor:pointer;border:1px solid #34436a}.chip.on{background:var(--r);border-color:var(--r)}.tg{background:#3a2a10;color:var(--y);padding:1px 8px;border-radius:10px;font-size:12px}
+.qb{display:flex;gap:6px;margin:8px 0}.qb button{flex:1}.cl{margin-top:10px;padding-top:10px;border-top:1px solid #2a3552}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}.kp div{background:var(--c2);padding:10px;border-radius:8px;text-align:center}.kp b{display:block;font-size:20px}.kp small{color:var(--m)}
+table{width:100%;border-collapse:collapse}th,td{padding:6px 8px;text-align:start;border-bottom:1px solid #2a3552}th{color:var(--m);font-weight:600}
+li{margin:4px 0}.S li::marker{color:var(--g)}.W li::marker{color:var(--r)}.row{display:flex;gap:8px;align-items:center;margin-bottom:6px}.row input:last-of-type{width:70px}
+#lb{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;z-index:9}#lb img{max-width:95vw;max-height:95vh}
+#ts{position:fixed;bottom:20px;inset-inline-start:20px;background:var(--a);color:#06231f;padding:10px 18px;border-radius:8px;font-weight:700;display:none}
+</style></head><body>
+<header id="hd"></header><nav id="nv"></nav><main id="app"></main><div id="lb" onclick="this.style.display='none'"><img></div><div id="ts"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+let S={lang:'fa',th:6,last:'XAUUSD',conds:[{id:1,t:'هم‌جهت با روند تایم‌فریم بالاتر',w:2},{id:2,t:'ورود در ناحیه نقدینگی / اردر بلاک',w:3},{id:3,t:'تایید کندلی / تریگر ورود',w:2},{id:4,t:'ریسک به ریوارد حداقل ۲',w:2},{id:5,t:'سشن و ساعت مناسب معامله',w:1}],trades:[]};
+let tab='new',F,X={tg:[]},CL=0,SCP='w',wk=0,IM={},SL='a';
+const $=s=>document.querySelector(s),q=(f,e)=>S.lang=='fa'?f:e,esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SB_URL='https://gxxvdsdpmzpltyyhztga.supabase.co',SB_KEY='sb_publishable_3FcLtsRYSZTy_QNwPAgQag_9xCGRuaS';
+const sb=supabase.createClient(SB_URL,SB_KEY,{auth:{flowType:'pkce'}});let U=null,ADM=false;
+const b2d=b=>new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result);f.readAsDataURL(b)});
+const kv=async(m,k,v)=>{const u=U.id;try{
+if(k=='S'){if(m=='get'){const{data}=await sb.from('journals').select('data').eq('user_id',u).maybeSingle();return data&&data.data}
+if(m=='set'){const{error}=await sb.from('journals').upsert({user_id:u,data:v,updated_at:new Date().toISOString()});if(error)throw error;return}}
+const p=u+'/'+k;
+if(m=='get'){const{data}=await sb.storage.from('shots').download(p);return data?b2d(data):null}
+if(m=='set'){const{error}=await sb.storage.from('shots').upload(p,await(await fetch(v)).blob(),{upsert:true,contentType:'image/jpeg'});if(error)throw error;return}
+if(m=='del')await sb.storage.from('shots').remove([p])
+}catch(e){toast(q('خطا در ارتباط با سرور','Server error'));console.error(e)}};
+const save=()=>kv('set','S',S),act=()=>S.conds.filter(c=>!c.x),sum=a=>a.reduce((s,c)=>s+c.w,0);
+const D=(d,o,p)=>new Intl.DateTimeFormat(p||(S.lang=='fa'?'fa-IR-u-ca-persian':'en-GB'),o).format(d);
+const mon=d=>{d=new Date(d);d.setHours(0,0,0,0);d.setDate(d.getDate()-(d.getDay()+6)%7);return d.getTime()};
+const fm=n=>(n>0?'+':'')+(+(+n).toFixed(2)),nf=()=>({c:{},sym:S.last||'XAUUSD',dir:'b',e:'',sl:'',tp:'',nt:''});
+const toast=m=>{const t=$('#ts');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',1800)};
+const comp=f=>new Promise(r=>{const i=new Image();i.onload=()=>{const k=Math.min(1,1600/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*k;c.height=i.height*k;c.getContext('2d').drawImage(i,0,0,c.width,c.height);r(c.toDataURL('image/jpeg',.78))};i.src=URL.createObjectURL(f)});
+async function setImg(f){IM[SL]=await comp(f);const e=$('#sl_'+SL);if(e)e.innerHTML=`<img src="${IM[SL]}">`}
+function pick(k){SL=k;const i=document.createElement('input');i.type='file';i.accept='image/*';i.onchange=()=>i.files[0]&&setImg(i.files[0]);i.click()}
+document.onpaste=e=>{const f=[...e.clipboardData.files].find(f=>f.type.startsWith('image'));if(f)setImg(f)};
+const slot=(k,l)=>`<div class="slot" id="sl_${k}" onclick="pick('${k}')" onmouseenter="SL='${k}'" ondragover="event.preventDefault();SL='${k}'" ondrop="event.preventDefault();setImg(event.dataTransfer.files[0])">${IM[k]?`<img src="${IM[k]}">`:q('📷 '+l+'<br>(Ctrl+V برای چسباندن، یا کلیک / کشیدن فایل)','📷 '+l+'<br>(Ctrl+V to paste, click or drop a file)')}</div>`;
+function render(){document.documentElement.lang=S.lang;document.documentElement.dir=S.lang=='fa'?'rtl':'ltr';const d=new Date(),o={weekday:'long',day:'numeric',month:'long',year:'numeric'};
+$('#hd').innerHTML=`<h1>📒 ${q('امیر ژورنال','Amir Journal')}</h1><div class="dt">${D(d,o)}<small>${D(d,o,S.lang=='fa'?'en-GB':'fa-IR-u-ca-persian')}</small></div><button onclick="S.lang=S.lang=='fa'?'en':'fa';save();render()">${q('English','فارسی')}</button><button onclick="sb.auth.signOut()">${q('خروج','Logout')}</button>`;
+$('#nv').innerHTML=[['new',q('➕ ثبت ورود','➕ New entry')],['jr',q('📋 ژورنال','📋 Journal')],['wk',q('📊 گزارش','📊 Report')],['set',q('⚙️ تنظیمات','⚙️ Settings')],...(ADM?[['adm','🛡 Admin']]:[])].map(([k,l])=>`<button class="${tab==k?'on':''}" onclick="tab='${k}';render()">${l}</button>`).join('');
+$('#app').innerHTML={new:vNew,jr:vJr,wk:vWk,set:vSet,adm:vAdm}[tab]();if(tab=='new')upd();
+document.querySelectorAll('img[data-k]').forEach(async i=>{const v=await kv('get',i.dataset.k);if(v){i.src=v;i.onclick=()=>{$('#lb img').src=v;$('#lb').style.display='flex'}}})}
+function vNew(){const a=act();return `<div class="card"><h2>${q('شرایط ورود (تیک بزن)','Entry conditions (tick)')}</h2>${a.map(c=>`<label class="ck"><input type="checkbox" ${F.c[c.id]?'checked':''} onchange="F.c[${c.id}]=this.checked;upd()"><span>${esc(c.t)}</span><b>${c.w}</b></label>`).join('')||`<p class="mu">${q('ابتدا در تنظیمات شرایط را تعریف کن','Define conditions in Settings first')}</p>`}<div class="bar"><i id="bi"></i><u id="bt"></u></div><div id="sc"></div></div>
+<div class="card"><h2>${q('مشخصات معامله','Trade details')}</h2><div class="g"><input placeholder="${q('نماد','Symbol')}" value="${esc(F.sym)}" oninput="F.sym=this.value.toUpperCase()"><select onchange="F.dir=this.value"><option value="b" ${F.dir=='b'?'selected':''}>Buy ▲</option><option value="s" ${F.dir=='s'?'selected':''}>Sell ▼</option></select></div>
+<div class="g" dir="ltr"><input type="number" step="any" placeholder="Entry" value="${F.e}" oninput="F.e=this.value;rr()"><input type="number" step="any" placeholder="SL" value="${F.sl}" oninput="F.sl=this.value;rr()"><input type="number" step="any" placeholder="TP" value="${F.tp}" oninput="F.tp=this.value;rr()"></div><div id="rr" class="mu"></div>
+<input placeholder="${q('یادداشت کوتاه (اختیاری)','Short note (optional)')}" value="${esc(F.nt)}" oninput="F.nt=this.value">${slot('a',q('اسکرین‌شات سایز پوزیشن هنگام ورود','Position-size screenshot at entry'))}<button class="pr" id="sv" onclick="addT()">${q('✅ ثبت ورود','✅ Log entry')}</button></div>`}
+function sc(){const a=act(),s=a.reduce((s,c)=>s+(F.c[c.id]?c.w:0),0);return[s,sum(a)]}
+function upd(){const[s,mx]=sc(),ok=s>=S.th;$('#bi').style.width=(mx?s/mx*100:0)+'%';$('#bi').className=ok?'ok':'';$('#bt').style.insetInlineStart=(mx?S.th/mx*100:0)+'%';
+$('#sc').innerHTML=`<div class="st ${ok?'ok':'no'}">${s} / ${mx} — ${ok?q('✅ مجاز به ورود','✅ Entry allowed'):q('⛔ ورود ممنوع (حداقل '+S.th+')','⛔ Not allowed (min '+S.th+')')}</div>`+(ok?'':`<label class="ov"><input type="checkbox" ${F.ov?'checked':''} onchange="F.ov=this.checked;upd()">${q('ثبت ورود خلاف قانون (با علامت ⚠)','Log rule-breaking entry (flagged ⚠)')}</label>`);$('#sv').disabled=!(ok||F.ov)}
+function rr(){const e=+F.e,s=+F.sl,t=+F.tp;$('#rr').textContent=e&&s&&t?`R:R = 1 : ${(Math.abs(t-e)/Math.abs(e-s)).toFixed(2)}`:''}
+async function addT(){const[s,mx]=sc(),id=Date.now();if(!F.sym)return toast(q('نماد را وارد کن','Enter symbol'));if(IM.a)await kv('set','i'+id+'a',IM.a);
+S.trades.unshift({id,ts:id,sym:F.sym,dir:F.dir,e:+F.e||0,sl:+F.sl||0,tp:+F.tp||0,nt:F.nt,c:Object.keys(F.c).filter(k=>F.c[k]).map(Number),sc:s,mx,th:S.th,vio:s<S.th,st:'o',ha:!!IM.a});S.last=F.sym;await save();F=nf();IM={};tab='jr';render();toast(q('ثبت شد ✔','Saved ✔'))}
+const M=[['fomo','FOMO','FOMO'],['early','خروج زودهنگام','Early exit'],['sl','جابجایی حد ضرر','Moved SL'],['size','حجم زیاد','Oversize'],['rev','انتقام‌گیری','Revenge'],['rule','نقض قانون','Broke rules']];
+const rrp=x=>x.tp&&x.e&&x.sl?+(Math.abs(x.tp-x.e)/Math.abs(x.e-x.sl)).toFixed(2):0;
+function vJr(){if(!S.trades.length)return `<div class="card mu">${q('هنوز معامله‌ای ثبت نشده.','No trades yet.')}</div>`;return S.trades.map(x=>{const d=new Date(x.ts),o=x.st=='o';return `<div class="card tr ${o?'open':x.r>0?'w':x.r<0?'l':''}"><div class="h"><b>${esc(x.sym)}</b><span>${x.dir=='b'?'▲ Buy':'▼ Sell'}</span><span>${D(d,{month:'short',day:'numeric',weekday:'short',hour:'2-digit',minute:'2-digit'})}</span><span>${x.sc}/${x.mx}</span>${x.vio?'<span class="tg">⚠</span>':''}<strong class="${x.r>0?'pos':x.r<0?'neg':''}">${o?q('باز','Open'):fm(x.r)+'R'}</strong></div>
+${x.ha||x.hb?`<div class="im"><img data-k="i${x.id}a"><img data-k="i${x.id}b"></div>`:''}${x.nt?`<div class="mu">${esc(x.nt)}</div>`:''}<div>${(x.tg||[]).map(k=>`<span class="tg">${q(...M.find(m=>m[0]==k).slice(1))}</span>`).join(' ')}</div>${x.xn?`<div class="mu">${esc(x.xn)}</div>`:''}
+${CL==x.id?clForm(x):`<div class="row" style="margin-top:8px">${o?`<button onclick="oc(${x.id})">${q('🏁 بستن معامله','🏁 Close trade')}</button>`:''}<button onclick="dl(${x.id})">🗑</button></div>`}</div>`}).join('')}
+function oc(id){CL=id;X={tg:[]};IM.b=null;SL='b';render()}
+function clForm(x){const r=rrp(x);return `<div class="cl"><div class="g" dir="ltr"><input type="number" step="any" placeholder="${q('قیمت خروج','Exit price')}" oninput="X.x=this.value;ar(${x.id})"><input id="xr" type="number" step="any" placeholder="R" oninput="X.r=this.value"></div>
+<div class="qb" dir="ltr"><button onclick="qr(-1)">SL −1R</button><button onclick="qr(0)">BE 0R</button>${r?`<button onclick="qr(${r})">TP +${r}R</button>`:''}</div>
+<div>${M.map(m=>`<span class="chip" onclick="X.tg.includes('${m[0]}')?X.tg=X.tg.filter(k=>k!='${m[0]}'):X.tg.push('${m[0]}');this.classList.toggle('on')">${q(m[1],m[2])}</span>`).join('')}</div>
+<input placeholder="${q('درس/یادداشت خروج','Exit note / lesson')}" oninput="X.n=this.value" style="margin-top:6px">${slot('b',q('اسکرین‌شات هنگام خروج','Screenshot at exit'))}<div class="row"><button class="pr" onclick="clT(${x.id})">${q('ثبت خروج','Save exit')}</button><button onclick="CL=0;render()">✖</button></div></div>`}
+const qr=v=>{X.r=v;$('#xr').value=v};
+function ar(id){const x=S.trades.find(t=>t.id==id),p=+X.x;if(!p||!x.e||!x.sl)return;const r=(x.dir=='b'?p-x.e:x.e-p)/Math.abs(x.e-x.sl);qr(+r.toFixed(2))}
+async function clT(id){if(X.r===undefined||X.r==='')return toast(q('R را وارد کن','Enter R'));const x=S.trades.find(t=>t.id==id);if(IM.b){await kv('set','i'+id+'b',IM.b);x.hb=1}
+Object.assign(x,{st:'c',r:+X.r,xp:+X.x||0,tg:X.tg,xn:X.n,xts:Date.now()});IM={};CL=0;await save();render();toast(q('ثبت شد ✔','Saved ✔'))}
+async function dl(id){if(!confirm(q('حذف شود؟','Delete?')))return;await kv('del','i'+id+'a');await kv('del','i'+id+'b');S.trades=S.trades.filter(t=>t.id!=id);await save();render()}
+function st(a){const n=a.length,w=a.filter(x=>x.r>0),l=a.filter(x=>x.r<0),sm=a.reduce((s,x)=>s+x.r,0),gw=w.reduce((s,x)=>s+x.r,0),gl=-l.reduce((s,x)=>s+x.r,0);let c=0,pk=0,dd=0;a.forEach(x=>{c+=x.r;pk=Math.max(pk,c);dd=Math.max(dd,pk-c)});return{n,wr:n?w.length/n*100:0,sm,aw:w.length?gw/w.length:0,al:l.length?gl/l.length:0,pf:gl?gw/gl:gw?99:0,ex:n?sm/n:0,dd,sc:n?a.reduce((s,x)=>s+x.sc/x.mx,0)/n*100:0}}
+const by=(a,f)=>{const m={};a.forEach(x=>(m[f(x)]??=[]).push(x));return Object.entries(m).map(([k,v])=>({k,...st(v)}))};
+const wd=i=>D(new Date(2024,0,1+(+i)),{weekday:'long'});
+function vWk(){const s=new Date(mon(new Date())+0);s.setDate(s.getDate()+7*wk);const e=new Date(s);e.setDate(e.getDate()+4),sm=s.getTime();
+const all=S.trades.filter(x=>x.st=='c').sort((a,b)=>a.xts-b.xts),a=SCP=='w'?all.filter(x=>mon(x.ts)==sm):all,k=st(a),op=S.trades.filter(x=>x.st=='o').length;
+const cs=S.conds.map(c=>({k:c.t,...st(a.filter(x=>x.c.includes(c.id)))})).filter(x=>x.n),ws=by(a,x=>(new Date(x.ts).getDay()+6)%7),sy=by(a,x=>x.sym),vi=a.filter(x=>x.vio),tm=by(a.flatMap(x=>(x.tg||[]).map(t=>({...x,t}))),x=>x.t);
+const G=[],B=[],ex=(l,f)=>l.length?l.reduce((m,x)=>f(x)>f(m)?x:m):0;
+if(k.n){k.ex>0?G.push(q(`امید ریاضی مثبت: ${fm(k.ex)}R در هر معامله`,`Positive expectancy: ${fm(k.ex)}R per trade`)):B.push(q(`امید ریاضی منفی: ${fm(k.ex)}R در هر معامله`,`Negative expectancy: ${fm(k.ex)}R per trade`));
+if(k.n>=3)k.wr>=50?G.push(q(`وین‌ریت خوب: ${k.wr.toFixed(0)}٪`,`Good win rate: ${k.wr.toFixed(0)}%`)):B.push(q(`وین‌ریت پایین: ${k.wr.toFixed(0)}٪`,`Low win rate: ${k.wr.toFixed(0)}%`));
+if(k.aw&&k.al)k.aw>=k.al?G.push(q(`میانگین سود (${k.aw.toFixed(2)}R) بزرگ‌تر از میانگین ضرر است`,`Avg win (${k.aw.toFixed(2)}R) beats avg loss`)):B.push(q(`میانگین ضرر (${k.al.toFixed(2)}R) از میانگین سود (${k.aw.toFixed(2)}R) بزرگ‌تر است؛ ضررها را زودتر قطع کن یا سودها را بیشتر بگذار`,`Avg loss (${k.al.toFixed(2)}R) exceeds avg win (${k.aw.toFixed(2)}R): cut losers faster / let winners run`));
+if(vi.length){const v=st(vi);B.push(q(`${vi.length} ورود خلاف قانون با مجموع ${fm(v.sm)}R`,`${vi.length} rule-breaking entries totalling ${fm(v.sm)}R`))}else G.push(q('همه ورودها طبق قانون بودند','All entries followed the rules'));
+if(k.dd>=3)B.push(q(`افت سرمایه ${k.dd.toFixed(1)}R؛ حجم را کم کن`,`Drawdown ${k.dd.toFixed(1)}R: reduce size`));
+const bc=ex(cs.filter(x=>x.n>=2),x=>x.ex),wc=cs.filter(x=>x.n>=2&&x.ex<0).reduce((m,x)=>!m||x.ex<m.ex?x:m,0);
+if(bc&&bc.ex>0)G.push(q(`قوی‌ترین شرط: «${bc.k}» (${fm(bc.ex)}R میانگین)`,`Strongest condition: "${bc.k}" (${fm(bc.ex)}R avg)`));if(wc)B.push(q(`ضعیف‌ترین شرط: «${wc.k}» (${fm(wc.ex)}R میانگین) — وزنش را بازنگری کن`,`Weakest condition: "${wc.k}" (${fm(wc.ex)}R avg): review its weight`));
+const bd=ex(ws,x=>x.sm),wdd=ws.reduce((m,x)=>!m||x.sm<m.sm?x:m,0);if(ws.length>1){if(bd.sm>0)G.push(q(`بهترین روز: ${wd(bd.k)} (${fm(bd.sm)}R)`,`Best day: ${wd(bd.k)} (${fm(bd.sm)}R)`));if(wdd.sm<0)B.push(q(`بدترین روز: ${wd(wdd.k)} (${fm(wdd.sm)}R)`,`Worst day: ${wd(wdd.k)} (${fm(wdd.sm)}R)`))}
+const bs=ex(sy,x=>x.sm),ws2=sy.reduce((m,x)=>!m||x.sm<m.sm?x:m,0);if(sy.length>1){if(bs.sm>0)G.push(q(`بهترین نماد: ${bs.k} (${fm(bs.sm)}R)`,`Best symbol: ${bs.k} (${fm(bs.sm)}R)`));if(ws2.sm<0)B.push(q(`بدترین نماد: ${ws2.k} (${fm(ws2.sm)}R)`,`Worst symbol: ${ws2.k} (${fm(ws2.sm)}R)`))}
+const mt=ex(tm,x=>x.n);if(mt)B.push(q(`پرتکرارترین اشتباه: ${q(...M.find(m=>m[0]==mt.k).slice(1))} (${mt.n} بار، ${fm(mt.sm)}R)`,`Most frequent mistake: ${q(...M.find(m=>m[0]==mt.k).slice(1))} (${mt.n}×, ${fm(mt.sm)}R)`))}
+let c=0,pts=a.map(x=>c+=x.r),W=600,H=120,mn=Math.min(0,...pts),mxx=Math.max(0,...pts)||1,P=pts.map((v,i)=>`${pts.length>1?i/(pts.length-1)*W:W/2},${H-(v-mn)/((mxx-mn)||1)*(H-10)-5}`).join(' ');
+const bx=(l,v,cl='')=>`<div><b class="${cl}">${v}</b><small>${l}</small></div>`,tb=(h,r)=>`<table><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr>${r.map(x=>`<tr>${x.map(y=>`<td>${y}</td>`).join('')}</tr>`).join('')}</table>`;
+const hd=[q('مورد','Item'),q('تعداد','N'),q('وین‌ریت','Win%'),q('مجموع R','Sum R'),q('میانگین R','Avg R')],rw=x=>[x.k,x.n,x.wr.toFixed(0)+'%',fm(x.sm),fm(x.ex)];
+return `<div class="card"><div class="row"><button onclick="SCP='w';render()" ${SCP=='w'?'style="border-color:var(--a)"':''}>${q('هفتگی','Weekly')}</button><button onclick="SCP='a';render()" ${SCP=='a'?'style="border-color:var(--a)"':''}>${q('کل تاریخچه','All time')}</button>
+${SCP=='w'?`<button onclick="wk--;render()">${q('▶','◀')}</button><b style="flex:1;text-align:center">${q('دوشنبه','Mon')} ${D(s,{month:'short',day:'numeric'})} → ${q('جمعه','Fri')} ${D(e,{month:'short',day:'numeric'})}</b><button onclick="wk=Math.min(0,wk+1);render()">${q('◀','▶')}</button>`:''}</div>
+${op?`<div class="mu">${q(op+' معامله باز هنوز در محاسبات نیست','Open trades not counted: '+op)}</div>`:''}</div>
+${k.n?`<div class="card"><div class="kp">${bx(q('تعداد','Trades'),k.n)}${bx(q('وین‌ریت','Win rate'),k.wr.toFixed(0)+'%')}${bx(q('مجموع R','Total R'),fm(k.sm),k.sm>=0?'pos':'neg')}${bx('Profit Factor',k.pf>=99?'∞':k.pf.toFixed(2))}${bx(q('امید ریاضی','Expectancy'),fm(k.ex)+'R')}${bx(q('میانگین سود','Avg win'),k.aw.toFixed(2)+'R')}${bx(q('میانگین ضرر','Avg loss'),k.al.toFixed(2)+'R')}${bx(q('بیشترین افت','Max DD'),k.dd.toFixed(2)+'R','neg')}${bx(q('پایبندی به امتیاز','Avg score'),k.sc.toFixed(0)+'%')}</div>
+<svg viewBox="0 0 ${W} ${H}" style="width:100%;margin-top:12px" dir="ltr"><line x1="0" x2="${W}" y1="${H-(0-mn)/((mxx-mn)||1)*(H-10)-5}" y2="${H-(0-mn)/((mxx-mn)||1)*(H-10)-5}" stroke="#34436a" stroke-dasharray="4"/><polyline points="${P}" fill="none" stroke="#2dd4bf" stroke-width="2.5"/></svg></div>
+<div class="card"><h2>💪 ${q('نقاط قوت','Strengths')}</h2><ul class="S">${G.map(x=>`<li>${x}</li>`).join('')||'<li class="mu">—</li>'}</ul><h2>⚠️ ${q('نقاط ضعف','Weaknesses')}</h2><ul class="W">${B.map(x=>`<li>${x}</li>`).join('')||'<li class="mu">—</li>'}</ul></div>
+<div class="card"><h2>${q('عملکرد هر شرط','Per condition')}</h2>${tb(hd,cs.map(rw))}</div><div class="card"><h2>${q('روزهای هفته','Weekdays')}</h2>${tb(hd,ws.sort((x,y)=>x.k-y.k).map(x=>rw({...x,k:wd(x.k)})))}</div><div class="card"><h2>${q('نمادها','Symbols')}</h2>${tb(hd,sy.map(rw))}</div>`:`<div class="card mu">${q('معامله بسته‌شده‌ای در این بازه نیست.','No closed trades in this range.')}</div>`}`}
+function vSet(){return `<div class="card"><h2>${q('شرایط ورود استراتژی و وزن (امتیاز) هرکدام','Strategy conditions & weights')}</h2>${act().map(c=>`<div class="row"><input value="${esc(c.t)}" onchange="ed(${c.id},'t',this.value)"><input type="number" min="1" value="${c.w}" onchange="ed(${c.id},'w',+this.value||1)"><button onclick="ed(${c.id},'x',1);render()">🗑</button></div>`).join('')}<button onclick="S.conds.push({id:Date.now(),t:'',w:1});render()">➕ ${q('شرط جدید','Add condition')}</button>
+<div class="row" style="margin-top:14px"><span>${q('حد نصاب امتیاز برای ورود:','Minimum score to enter:')}</span><input type="number" style="width:80px" value="${S.th}" onchange="S.th=+this.value||1;save()"><span class="mu">/ ${sum(act())}</span></div></div>
+<div class="card"><h2>💾 ${q('پشتیبان‌گیری','Backup')}</h2><p class="mu">${q('داده‌ها فقط روی همین کامپیوتر (مرورگر) ذخیره می‌شوند. حتما هفتگی پشتیبان بگیر.','Data lives only in this browser on this PC. Back up weekly.')}</p><div class="row"><button onclick="ex()">⬇ ${q('خروجی','Export')}</button><button onclick="im()">⬆ ${q('بازیابی','Import')}</button></div></div>`}
+const ed=(id,k,v)=>{S.conds.find(c=>c.id==id)[k]=v;save()};
+async function ex(){const I={};for(const x of S.trades)for(const z of['a','b']){const v=await kv('get','i'+x.id+z);if(v)I['i'+x.id+z]=v}const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({S,I})]));a.download='AmirJournal-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click()}
+function im(){const i=document.createElement('input');i.type='file';i.accept='.json';i.onchange=async()=>{const d=JSON.parse(await i.files[0].text());if(!d.S||!confirm(q('داده‌های فعلی جایگزین می‌شود. ادامه؟','Replace current data?')))return;S=d.S;for(const k in d.I)await kv('set',k,d.I[k]);await save();render();toast('✔')};i.click()}
+function authView(){$('#hd').innerHTML='<h1>📒 امیر ژورنال</h1>';$('#nv').innerHTML='';$('#app').innerHTML=`<div class="card" style="max-width:380px;margin:40px auto"><h2>ورود / ثبت‌نام · Sign in / up</h2><input id="em" type="email" placeholder="Email" dir="ltr" style="margin-bottom:8px"><input id="pw" type="password" placeholder="Password (min 6)" dir="ltr" style="margin-bottom:8px"><div class="row"><button class="pr" onclick="au('in')">ورود · Sign in</button></div><div class="row"><button style="flex:1" onclick="gl()">🔵 ورود سریع با گوگل · Continue with Google</button></div><div class="row"><button style="flex:1" onclick="au('up')">ساخت حساب · Sign up</button><button style="flex:1" onclick="au('rs')">فراموشی رمز · Forgot</button></div><div id="am" class="mu"></div></div>`}
+async function au(k){const email=$('#em').value.trim(),password=$('#pw').value,m=$('#am');let r;
+if(k=='rs'){r=await sb.auth.resetPasswordForEmail(email);m.textContent=r.error?r.error.message:'✔ ایمیل بازیابی ارسال شد · Reset email sent';return}
+r=k=='in'?await sb.auth.signInWithPassword({email,password}):await sb.auth.signUp({email,password});
+if(r.error)return m.textContent=r.error.message;
+if(!r.data.session)return m.textContent='✔ ایمیل تایید ارسال شد؛ تایید کن و وارد شو · Check your email to confirm';boot()}
+async function gl(){const nat=window.native,m=$('#am');
+const{data,error}=await sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:nat?'http://127.0.0.1:53682/callback':location.href.split('#')[0],skipBrowserRedirect:!!nat}});
+if(error)return m.textContent=error.message;if(!nat)return;
+try{const code=await nat.oauth(data.url),r=await sb.auth.exchangeCodeForSession(code);if(r.error)throw r.error;boot()}catch(e){m.textContent=e.message}}
+async function boot(){const{data:{session}}=await sb.auth.getSession();if(!session)return authView();U=session.user;
+const{data:p}=await sb.from('profiles').select('is_admin').eq('id',U.id).maybeSingle();ADM=!!(p&&p.is_admin);
+const s=await kv('get','S');if(s)S=s;else await kv('set','S',S);F=nf();render()}
+sb.auth.onAuthStateChange(async(e)=>{if(e=='SIGNED_OUT')location.reload();if(e=='PASSWORD_RECOVERY'){const p=prompt('رمز جدید · New password');if(p){const r=await sb.auth.updateUser({password:p});alert(r.error?r.error.message:'✔')}}});
+function vAdm(){loadAdm();return '<div class="card" id="adm" class="mu">…</div>'}
+async function loadAdm(){const{data:p}=await sb.from('profiles').select('*').order('created_at'),{data:j}=await sb.from('journals').select('user_id,updated_at,data'),m={};(j||[]).forEach(x=>m[x.user_id]=x);const e=$('#adm');if(!e)return;
+e.innerHTML=`<h2>🛡 ${(p||[]).length} ${q('کاربر','users')}</h2><table><tr><th>Email</th><th>${q('عضویت','Joined')}</th><th>${q('معاملات','Trades')}</th><th>${q('آخرین همگام‌سازی','Last sync')}</th><th></th></tr>${(p||[]).map(x=>{const y=m[x.id],t=(y&&y.data.trades)||[];return `<tr><td dir="ltr">${esc(x.email)}${x.is_admin?' 🛡':''}</td><td>${D(new Date(x.created_at),{dateStyle:'medium'})}</td><td>${t.length} (${t.filter(z=>z.st=='c').length} ${q('بسته','closed')})</td><td>${y?D(new Date(y.updated_at),{dateStyle:'short',timeStyle:'short'}):'—'}</td><td><button onclick="rsp('${esc(x.email)}')">🔑 ${q('بازنشانی رمز','Reset pw')}</button></td></tr>`}).join('')}</table>`}
+async function rsp(e){const r=await sb.auth.resetPasswordForEmail(e);toast(r.error?r.error.message:'✔')}
+boot();
+</script></body></html>

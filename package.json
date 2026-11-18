@@ -1,0 +1,4 @@
+{"name":"amir-journal","version":"1.0.0","description":"Amir Journal","main":"main.js","author":"Amir Bagheri",
+"scripts":{"start":"electron .","dist":"electron-builder --win nsis"},
+"devDependencies":{"electron":"33.2.0","electron-builder":"25.1.8"},
+"build":{"appId":"com.amir.journal","productName":"Amir Journal","files":["main.js","index.html"],"win":{"target":"nsis"},"nsis":{"oneClick":false,"allowToChangeInstallationDirectory":true}}}
